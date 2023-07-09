@@ -5,22 +5,25 @@ using UnityEngine.AI;
 
 public class Idle : AIState
 {
-    public Idle(GameObject _npc, NavMeshAgent _agent, Transform _tranformPositon)
-        : base(_npc, _agent, _tranformPositon)
+    public Idle(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations)
+        : base(_npc, _agent, _checkPoints, _timer, _destinations)
     {
         name = State.Idle;
     }
 
     public override void Enter()
     {
+        
         base.Enter();
     }
 
     public override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(timer >= 1)
         {
-            Debug.Log("Suca");
+            nexState = new Patrolling(npc, agent, checkPoints, timer, destinations);
+            stage = Event.Exit;
+            return;
         }
         base.Update();
     }
