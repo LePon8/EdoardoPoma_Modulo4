@@ -7,8 +7,8 @@ public class Patrolling : AIState
 {
     int currentCheckpoint = -1;
 
-    public Patrolling(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations, GameObject _foodPrefab)
-        : base(_npc, _agent, _checkPoints, _timer, _destinations, _foodPrefab)
+    public Patrolling(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations, GameObject _foodPrefab, GameObject _videoClip)
+        : base(_npc, _agent, _checkPoints, _timer, _destinations, _foodPrefab, _videoClip)
     {
         name = State.Patrolling;
         agent.speed = 4;
@@ -45,9 +45,9 @@ public class Patrolling : AIState
             agent.SetDestination(checkPoints[currentCheckpoint].position);
         }
 
-        if(timer >= 14)
+        if(timer >= 50)
         {
-            nexState = new Sleep(npc, agent, checkPoints, timer, destinations, foodPrefab);
+            nexState = new WatchTv(npc, agent, checkPoints, timer, destinations, foodPrefab, videoClip);
             stage = Event.Exit;
             return;
         }

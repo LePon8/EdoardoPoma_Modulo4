@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class Eat : AIState
 {
-    public Eat(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations, GameObject _foodPrefab)
-        : base(_npc, _agent, _checkPoints, _timer, _destinations, _foodPrefab)
+    public Eat(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations, GameObject _foodPrefab, GameObject _videoClip)
+        : base(_npc, _agent, _checkPoints, _timer, _destinations, _foodPrefab, _videoClip)
     {
         name = State.Eat;
         agent.speed = 4;
@@ -22,7 +22,7 @@ public class Eat : AIState
     {
         agent.SetDestination(destinations[1].position);
 
-        if(timer >= 40)
+        if(timer >= 25)
         {
             agent.SetDestination(destinations[2].position);
             foodPrefab.SetActive(true);
@@ -32,12 +32,12 @@ public class Eat : AIState
                 npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, destinations[2].rotation, 5);
             }
 
-            if(timer >= 50)
+            if(timer >= 35)
             {
                 foodPrefab.SetActive(false);
-                timer = 0;
+                //timer = 0;
 
-                nexState = new Idle(npc, agent, checkPoints, timer, destinations, foodPrefab);
+                nexState = new Patrolling(npc, agent, checkPoints, timer, destinations, foodPrefab, videoClip);
                 stage = Event.Exit;
                 return;
             }

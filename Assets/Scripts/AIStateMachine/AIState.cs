@@ -9,7 +9,8 @@ public enum State
     Idle,
     Patrolling,
     Eat,
-    Sleep
+    Sleep,
+    WatchTv
 }
 public class AIState
 {
@@ -25,13 +26,14 @@ public class AIState
 
     protected GameObject npc;
     protected GameObject foodPrefab;
+    protected GameObject videoClip;
     protected Transform[] checkPoints;
     protected Transform[] destinations;
     protected AIState nexState;
     protected NavMeshAgent agent;
     protected float timer;
 
-    public AIState(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations, GameObject _foodPrefab)
+    public AIState(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations, GameObject _foodPrefab, GameObject _videoClip)
     {
         stage = Event.Enter;
         npc = _npc;
@@ -40,6 +42,7 @@ public class AIState
         timer = _timer;
         destinations = _destinations;
         foodPrefab = _foodPrefab;
+        videoClip = _videoClip;
     }
 
     public virtual void Enter() { stage = Event.Update; }

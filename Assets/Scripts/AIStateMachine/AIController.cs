@@ -5,10 +5,11 @@ using UnityEngine.AI;
 
 public class AIController : MonoBehaviour
 {
-    //[SerializeField] GameObject order;
+    
     [SerializeField] Transform[] checkPoints;
     [SerializeField] Transform[] destinations;
     [SerializeField] GameObject foodPrefab;
+    [SerializeField] GameObject videoClip;
 
     NavMeshAgent agent;
     AIState currentState;
@@ -19,7 +20,7 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        currentState = new Idle(gameObject, agent, checkPoints, timer, destinations, foodPrefab);
+        currentState = new Idle(gameObject, agent, checkPoints, timer, destinations, foodPrefab, videoClip);
     }
 
     // Update is called once per frame
