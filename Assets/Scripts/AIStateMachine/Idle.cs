@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class Idle : AIState
 {
-    public Idle(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations)
-        : base(_npc, _agent, _checkPoints, _timer, _destinations)
+    public Idle(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations, GameObject _foodPrefab)
+        : base(_npc, _agent, _checkPoints, _timer, _destinations, _foodPrefab)
     {
         name = State.Idle;
     }
@@ -21,7 +21,7 @@ public class Idle : AIState
     {
         if(timer >= 1)
         {
-            nexState = new Patrolling(npc, agent, checkPoints, timer, destinations);
+            nexState = new Patrolling(npc, agent, checkPoints, timer, destinations, foodPrefab);
             stage = Event.Exit;
             return;
         }

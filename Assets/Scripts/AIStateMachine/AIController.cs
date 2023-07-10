@@ -8,6 +8,7 @@ public class AIController : MonoBehaviour
     //[SerializeField] GameObject order;
     [SerializeField] Transform[] checkPoints;
     [SerializeField] Transform[] destinations;
+    [SerializeField] GameObject foodPrefab;
 
     NavMeshAgent agent;
     AIState currentState;
@@ -18,22 +19,13 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        currentState = new Idle(gameObject, agent, checkPoints, timer, destinations);
+        currentState = new Idle(gameObject, agent, checkPoints, timer, destinations, foodPrefab);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        //timer += Time.deltaTime;
         currentState = currentState.Process();
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Letto"))
-    //    {
-    //        Debug.Log("A letto");
-    //        transform.SetParent(other.gameObject.transform);
-    //    }
-    //}
 }

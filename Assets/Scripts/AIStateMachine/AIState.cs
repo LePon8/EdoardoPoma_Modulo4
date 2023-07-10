@@ -24,13 +24,14 @@ public class AIState
     protected Event stage;
 
     protected GameObject npc;
+    protected GameObject foodPrefab;
     protected Transform[] checkPoints;
     protected Transform[] destinations;
     protected AIState nexState;
     protected NavMeshAgent agent;
     protected float timer;
 
-    public AIState(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations)
+    public AIState(GameObject _npc, NavMeshAgent _agent, Transform[] _checkPoints, float _timer, Transform[] _destinations, GameObject _foodPrefab)
     {
         stage = Event.Enter;
         npc = _npc;
@@ -38,6 +39,7 @@ public class AIState
         checkPoints = _checkPoints;
         timer = _timer;
         destinations = _destinations;
+        foodPrefab = _foodPrefab;
     }
 
     public virtual void Enter() { stage = Event.Update; }
